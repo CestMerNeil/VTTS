@@ -1,0 +1,22 @@
+"filename", "language", "JavaScript", "JSON", "HTML", "Python", "CSS", "JavaScript React", "comment", "blank", "total"
+"/Users/neil/Code/VTTS/TTS/tts.py", "Python", 0, 0, 0, 17, 0, 0, 17, 6, 40
+"/Users/neil/Code/VTTS/TTS/tts_models/BIAOBEI/config.json", "JSON", 0, 207, 0, 0, 0, 0, 0, 0, 207
+"/Users/neil/Code/VTTS/main.js", "JavaScript", 56, 0, 0, 0, 0, 0, 2, 8, 66
+"/Users/neil/Code/VTTS/package-lock.json", "JSON", 0, 1462, 0, 0, 0, 0, 0, 1, 1463
+"/Users/neil/Code/VTTS/package.json", "JSON", 0, 20, 0, 0, 0, 0, 0, 1, 21
+"/Users/neil/Code/VTTS/preload.js", "JavaScript", 13, 0, 0, 0, 0, 0, 5, 3, 21
+"/Users/neil/Code/VTTS/vtts_react/package-lock.json", "JSON", 0, 18816, 0, 0, 0, 0, 0, 1, 18817
+"/Users/neil/Code/VTTS/vtts_react/package.json", "JSON", 0, 46, 0, 0, 0, 0, 0, 1, 47
+"/Users/neil/Code/VTTS/vtts_react/public/Model_List.json", "JSON", 0, 17, 0, 0, 0, 0, 0, 1, 18
+"/Users/neil/Code/VTTS/vtts_react/public/index.html", "HTML", 0, 0, 20, 0, 0, 0, 23, 1, 44
+"/Users/neil/Code/VTTS/vtts_react/src/App.js", "JavaScript", 44, 0, 0, 0, 0, 0, 0, 7, 51
+"/Users/neil/Code/VTTS/vtts_react/src/Components/Navigator/Navigation.jsx", "JavaScript React", 0, 0, 0, 0, 0, 38, 0, 4, 42
+"/Users/neil/Code/VTTS/vtts_react/src/Components/Pages/Player.jsx", "JavaScript React", 0, 0, 0, 0, 0, 194, 0, 4, 198
+"/Users/neil/Code/VTTS/vtts_react/src/Components/Pages/Settings.jsx", "JavaScript React", 0, 0, 0, 0, 0, 57, 12, 10, 79
+"/Users/neil/Code/VTTS/vtts_react/src/Components/Pages/TTS.jsx", "JavaScript React", 0, 0, 0, 0, 0, 108, 2, 13, 123
+"/Users/neil/Code/VTTS/vtts_react/src/Components/Pages/Thanks.jsx", "JavaScript React", 0, 0, 0, 0, 0, 19, 0, 1, 20
+"/Users/neil/Code/VTTS/vtts_react/src/Components/Pages/pg1.jsx", "JavaScript React", 0, 0, 0, 0, 0, 9, 0, 2, 11
+"/Users/neil/Code/VTTS/vtts_react/src/index.css", "CSS", 0, 0, 0, 0, 13, 0, 0, 3, 16
+"/Users/neil/Code/VTTS/vtts_react/src/index.js", "JavaScript", 12, 0, 0, 0, 0, 0, 3, 3, 18
+"/Users/neil/Code/VTTS/vtts_react/src/reportWebVitals.js", "JavaScript", 12, 0, 0, 0, 0, 0, 0, 2, 14
+"Total", "-", 137, 20568, 20, 17, 13, 425, 64, 72, 21316

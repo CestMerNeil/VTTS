@@ -1,0 +1,17 @@
+[
+    {
+        "model_name": "BIAOBEI",
+        "model_path": "/TTS/tts_models/BIAOBEI/model_file.pth",
+        "model_config": "/TTS/tts_models/BIAOBEI/config.json"
+    },
+    {
+        "model_name": "奶团FUFU",
+        "model_path": "/TTS/tts_models/FUFU/best_model.pth",
+        "model_config": "/TTS/tts_models/FUFU/config.json"
+    },
+    {
+        "model_name": "model_3",
+        "model_path": "/path/to/model_3",
+        "model_config": "/path/to/model_3/config.json"
+    }
+]
