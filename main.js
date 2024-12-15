@@ -1,91 +1,81 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
-const { spawn } = require('child_process');
-const path = require('path');
-const fs = require('fs');
+const { app, BrowserWindow } = require("electron");
+const { spawn } = require("child_process");
+const path = require("path");
+const axios = require("axios");
 
-const audioPath = path.join(__dirname, '/vtts_react/public/output/');
+let mainWindow;
+let flaskProcess;
 
-function createWindow() {
-  const win = new BrowserWindow({
-    width: 1200,
-    height: 750,
-    minWidth: 800,
-    minHeight: 500,
-    resizable: true, // 调整窗口大小
-    aspectRatio: 8 / 5,
-    //titleBarStyle: 'hidden',
-    webPreferences: {
-      sandbox: true, // 开启沙箱模式
-      nodeIntegration: false, // While using preload, it's recommended to disable nodeIntegration
-      contextIsolation: true, // Protect against prototype pollution
-      preload: path.join(__dirname + '/preload.js')
-    }
-  });
+// 启动 Flask 后端
+const startFlask = () => {
+    return new Promise((resolve, reject) => {
+        console.log("Starting Flask...");
+        flaskProcess = spawn("python", ["stellarcore/app.py"], {
+            stdio: "inherit", // 打印 Flask 的输出
+            cwd: path.join(__dirname), // 确保路径正确
+        });
 
-  win.loadURL('http://localhost:3000'); // React 开发服务器的 URL
-}
+        flaskProcess.on("error", (err) => {
+            console.error("Failed to start Flask process:", err);
+            reject(err);
+        });
 
-// Get the wav file path
-ipcMain.handle('get-audio-path',(event, arg) => {
-  return path.join('/output/', arg);
-})
-
-// Run Python script
-ipcMain.on('synthesize-tts', (event, arg) => {
-  const {text, modelPath, modelConfig, title } = arg;
-  console.log("arg: ", arg);
-
-  let modelPath_Global = path.join(__dirname, modelPath);
-  let modelConfig_Global = path.join(__dirname, modelConfig);
-  let outputDir_Global = path.join(__dirname, '/vtts_react/public/output/');
-  outputDir_Global = path.join(outputDir_Global, title) + '.wav';
-  console.log("modelPath_Global: ", modelPath_Global);
-  console.log("modelConfig_Global: ", modelConfig_Global);
-  console.log("outputDir_Global: ", outputDir_Global);
-
-  const python_path = '/Users/neil/miniconda3/envs/tts_test/bin/python';
-  const python_tts = spawn(python_path, ['./TTS/tts.py', text, modelPath_Global, modelConfig_Global, outputDir_Global]);
-  python_tts.stdout.on('data', (data) => {
-    const output = data.toString();
-    console.log(output);
-    console.log("开始测试返回信息");
-    if(output.includes('Done')) {
-      console.log("返回信息中含有Done");
-      event.sender.send('synthesize-tts-reply', true);
-      console.log("发送成功");
-    }
-  });
-  python_tts.stderr.on('data', (data) => {
-    console.error(data.toString());
-  });
-  python_tts.on('close', (code) => {
-    console.log(`child process exited with code ${code}`);
-  });
-})
-
-
-app.whenReady().then(async () => {
-  createWindow();
-
-  ipcMain.handle('get-wav-files', async () => {
-    return await readWavFiles()
-  })
-
-  app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0) {
-      createWindow()
-    }
-  })
-})
-
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit()
-  }
-})
-
-const readWavFiles = () => {
-  return fs.promises.readdir(audioPath)
-    .then(files => files.filter(file => path.extname(file) === '.wav'))
-    .catch(err => console.log(err));
+        // 检测 Flask 服务是否启动完成
+        const checkFlask = setInterval(async () => {
+            try {
+                const response = await axios.get("http://127.0.0.1:5001/health");
+                if (response.status === 200 && response.data.status === "healthy") {
+                    clearInterval(checkFlask);
+                    console.log("Flask started successfully.");
+                    resolve();
+                }
+            } catch (error) {
+                console.log("Waiting for Flask to start...");
+            }
+        }, 500); // 每 500ms 检查一次
+    });
 };
+
+// 创建 Electron 窗口
+const createMainWindow = () => {
+    mainWindow = new BrowserWindow({
+        width: 800,
+        height: 600,
+        webPreferences: {
+            contextIsolation: true,
+        },
+    });
+
+    // 加载 React 构建文件
+    mainWindow.loadFile(path.join(__dirname, "nebulaview/build/index.html"));
+
+    // 打开开发者工具（调试用，可删除）
+    mainWindow.webContents.openDevTools();
+
+    mainWindow.on("closed", () => {
+        mainWindow = null;
+    });
+};
+
+// 监听 Electron 生命周期
+app.on("ready", async () => {
+    try {
+        await startFlask(); // 确保 Flask 启动完成
+        createMainWindow(); // 创建 Electron 窗口
+    } catch (error) {
+        console.error("Failed to start Flask:", error);
+        app.quit();
+    }
+});
+
+app.on("window-all-closed", () => {
+    if (process.platform !== "darwin") {
+        app.quit();
+    }
+});
+
+app.on("quit", () => {
+    if (flaskProcess) {
+        flaskProcess.kill(); // 确保 Flask 进程随 Electron 退出
+    }
+});

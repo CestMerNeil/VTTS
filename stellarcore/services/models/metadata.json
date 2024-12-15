@@ -1,0 +1,8 @@
+{
+    "zh-CN": {
+        "name": "zh-CN",
+        "config_path": "services/models/zh-CN/config.json",
+        "model_file": "services/models/zh-CN/model_file.pth",
+        "scale_stats": "services/models/zh-CN/scale_stats.npy"
+    }
+}
