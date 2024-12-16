@@ -98,7 +98,7 @@ torchvision==0.20.1
 tqdm==4.67.1
 trainer==0.0.36
 transformers==4.47.0
--e git+https://github.com/CestMerNeil/VTTS@3b35eab2b60a1dffd01370fa7172fbcd67986238#egg=TTS&subdirectory=stellarcore/services/TTS
+TTS @ file:///Users/neil/Code/VTTS/stellarcore/services/TTS/dist/TTS-0.22.0-cp310-cp310-macosx_11_0_arm64.whl#sha256=f6b8af154d39bd90bfb71c4b6fa6ef62e7a786af36325ffd8fcbcf097c173352
 typeguard==4.4.1
 typing_extensions==4.12.2
 tzlocal==5.2

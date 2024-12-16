@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SideNavbar from "./components/SideNavbar";
 import Home from "./components/Home";
 import Settings from "./components/Settings";
+import AudioPlayer from "./components/AudioPlayer";
+import TTSGenerator from "./components/TTSGenerator";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/settings" element={<Settings />} />
+              <Route path="/audio" element={<AudioPlayer />} />
+              <Route path="/generate" element={<TTSGenerator />} />
             </Routes>
           </div>
         </div>

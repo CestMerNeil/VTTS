@@ -2,8 +2,11 @@
   "name": "vtts",
   "version": "1.0.0",
   "main": "main.js",
+  "license": "MIT",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "dev": "NODE_ENV=development electron .",
+    "build": "cd nebulaview && yarn build && cd .."
   },
   "devDependencies": {
     "electron": "^25.0.0"
