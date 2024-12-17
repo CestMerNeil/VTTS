@@ -1,13 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Play, Pause, SkipForward, SkipBack, Volume2, Repeat } from 'lucide-react';
+import { useTranslation } from "react-i18next";
 
 const AudioPlayer = () => {
+    const { t } = useTranslation();
     const [audioFiles, setAudioFiles] = useState([]);
     const [selectedFile, setSelectedFile] = useState(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
-    const [loopMode, setLoopMode] = useState('none'); // 'none', 'single', 'all'
+    const [loopMode, setLoopMode] = useState('none');
     const audioRef = useRef(null);
 
     useEffect(() => {
@@ -50,15 +52,12 @@ const AudioPlayer = () => {
 
     const handleEnded = () => {
         if (loopMode === 'single') {
-            // 单曲循环
             audioRef.current.play();
         } else if (loopMode === 'all') {
-            // 列表循环
             const currentIndex = audioFiles.findIndex(file => file.path === selectedFile.path);
             const nextIndex = (currentIndex + 1) % audioFiles.length;
             handleSelectFile(audioFiles[nextIndex]);
         } else {
-            // 不循环
             setIsPlaying(false);
         }
     };
@@ -75,7 +74,6 @@ const AudioPlayer = () => {
     };
 
     const handleLoopClick = () => {
-        // 循环模式切换：none -> single -> all -> none
         const modes = ['none', 'single', 'all'];
         const currentIndex = modes.indexOf(loopMode);
         const nextIndex = (currentIndex + 1) % modes.length;
@@ -105,7 +103,7 @@ const AudioPlayer = () => {
                 {/* 音频列表 */}
                 <div className="card bg-base-100 shadow-xl">
                     <div className="card-body">
-                        <h2 className="card-title mb-4">音频列表</h2>
+                        <h2 className="card-title mb-4">{t('audio.title')}</h2>
                         <div className="space-y-2 max-h-[400px] overflow-y-auto">
                             {audioFiles.map((file, index) => (
                                 <div
@@ -124,17 +122,14 @@ const AudioPlayer = () => {
                 {/* 播放器 */}
                 <div className="card bg-base-100 shadow-xl">
                     <div className="card-body">
-                        <h2 className="card-title mb-4">播放器</h2>
+                        <h2 className="card-title mb-4">{t('audio.player')}</h2>
 
                         {selectedFile ? (
                             <>
                                 <div className="text-center mb-4">
                                     <p className="text-lg font-medium">{selectedFile.name}</p>
                                     <p className="text-sm text-base-content/60">
-                                        循环模式: {
-                                            loopMode === 'single' ? '单曲循环' :
-                                                loopMode === 'all' ? '列表循环' : '不循环'
-                                        }
+                                        {t('audio.loopMode.title')}: {t(`audio.loopMode.${loopMode}`)}
                                     </p>
                                 </div>
 
@@ -167,24 +162,29 @@ const AudioPlayer = () => {
 
                                 {/* 控制按钮 */}
                                 <div className="flex justify-center items-center gap-4 mt-4">
-                                    <button className="btn btn-circle btn-primary">
+                                    <button
+                                        className="btn btn-circle btn-primary"
+                                        title={t('audio.controls.previous')}
+                                    >
                                         <SkipBack size={20} />
                                     </button>
                                     <button
                                         className="btn btn-circle btn-primary btn-lg"
                                         onClick={handlePlay}
+                                        title={t(`audio.controls.${isPlaying ? 'pause' : 'play'}`)}
                                     >
                                         {isPlaying ? <Pause size={24} /> : <Play size={24} />}
                                     </button>
-                                    <button className="btn btn-circle btn-primary">
+                                    <button
+                                        className="btn btn-circle btn-primary"
+                                        title={t('audio.controls.next')}
+                                    >
                                         <SkipForward size={20} />
                                     </button>
                                     <button
                                         className={`btn btn-circle ${getLoopButtonStyle()}`}
                                         onClick={handleLoopClick}
-                                        title={`循环模式: ${loopMode === 'single' ? '单曲循环' :
-                                                loopMode === 'all' ? '列表循环' : '不循环'
-                                            }`}
+                                        title={t(`audio.loopMode.${loopMode}`)}
                                     >
                                         <Repeat size={20} />
                                     </button>
@@ -192,7 +192,7 @@ const AudioPlayer = () => {
                             </>
                         ) : (
                             <div className="text-center text-base-content/50 py-12">
-                                请从列表中选择一个音频文件
+                                {t('audio.selectAudio')}
                             </div>
                         )}
                     </div>

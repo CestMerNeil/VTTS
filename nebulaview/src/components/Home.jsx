@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTransition } from "react-i18next";
 
 function Home() {
     const [name, setName] = useState("");
