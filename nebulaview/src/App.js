@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SideNavbar from "./components/SideNavbar";
 import Home from "./components/Home";
@@ -7,6 +7,12 @@ import AudioPlayer from "./components/AudioPlayer";
 import TTSGenerator from "./components/TTSGenerator";
 
 function App() {
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") || "light";
+    document.documentElement.setAttribute("data-theme", savedTheme);
+  }, []);
+
   return (
     <Router>
       <div className="flex h-screen overflow-hidden">
