@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Home, Wand2, Music, Settings } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import image from '../FUFU.jpg';
 
 const SideNavbar = () => {
     const location = useLocation();
@@ -14,7 +15,7 @@ const SideNavbar = () => {
                 <div className="flex flex-col items-center">
                     <div className="avatar">
                         <div className="w-24 rounded-xl">
-                            <img src="/FUFU.jpg" alt="FUFU" className="object-cover" />
+                            <img src={image} alt="FUFU" className="object-cover" />
                         </div>
                     </div>
                 </div>
