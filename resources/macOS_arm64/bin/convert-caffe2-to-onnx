@@ -1,4 +1,4 @@
-#!/Users/neil/miniconda3/envs/VTTS/bin/python
+#!/Users/neil/miniconda3/envs/VTTS_DIST/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

@@ -1,8 +1,8 @@
-prefix=/Users/neil/miniconda3/envs/VTTS
+prefix=/Users/neil/miniconda3/envs/VTTS_DIST
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 toolexeclibdir=${libdir}
-includedir=/Users/neil/miniconda3/envs/VTTS/include
+includedir=/Users/neil/miniconda3/envs/VTTS_DIST/include
 
 Name: libffi
 Description: Library supporting Foreign Function Interfaces

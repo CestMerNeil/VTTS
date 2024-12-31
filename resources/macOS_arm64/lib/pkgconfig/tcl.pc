@@ -1,8 +1,8 @@
 # tcl pkg-config source file
 
-prefix=/Users/neil/miniconda3/envs/VTTS
-exec_prefix=/Users/neil/miniconda3/envs/VTTS
-libdir=/Users/neil/miniconda3/envs/VTTS/lib
+prefix=/Users/neil/miniconda3/envs/VTTS_DIST
+exec_prefix=/Users/neil/miniconda3/envs/VTTS_DIST
+libdir=/Users/neil/miniconda3/envs/VTTS_DIST/lib
 includedir=${prefix}/include
 libfile=libtcl8.6.dylib
 

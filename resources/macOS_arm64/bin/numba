@@ -1,4 +1,4 @@
-#!/Users/neil/miniconda3/envs/VTTS/bin/python
+#!/Users/neil/miniconda3/envs/VTTS_DIST/bin/python
 # -*- coding: UTF-8 -*-
 from __future__ import print_function, division, absolute_import
 

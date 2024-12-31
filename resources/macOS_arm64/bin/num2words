@@ -1,4 +1,4 @@
-#!/Users/neil/miniconda3/envs/VTTS/bin/python
+#!/Users/neil/miniconda3/envs/VTTS_DIST/bin/python
 # -*- coding: utf-8 -*-
 # Copyright (c) 2003, Taro Ogawa.  All Rights Reserved.
 # Copyright (c) 2013, Savoir-faire Linux inc.  All Rights Reserved.
@@ -55,7 +55,7 @@ import sys
 from docopt import docopt
 import num2words
 
-__version__ = "0.5.13"
+__version__ = "0.5.14"
 __license__ = "LGPL"
 
 

@@ -1,5 +1,5 @@
 # See: man pkg-config
-prefix=/Users/neil/miniconda3/envs/VTTS
+prefix=/Users/neil/miniconda3/envs/VTTS_DIST
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include

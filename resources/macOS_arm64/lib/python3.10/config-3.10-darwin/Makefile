@@ -81,7 +81,7 @@ MAKESETUP=      $(srcdir)/Modules/makesetup
 OPT=		-DNDEBUG -fwrapv -O2 -Wall
 BASECFLAGS=	 -Wno-unused-result -Wsign-compare -Wunreachable-code
 BASECPPFLAGS=	-IObjects -IInclude -IPython
-CONFIGURE_CFLAGS=	-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -ftree-vectorize -fPIC -fPIE -fstack-protector-strong -O2 -pipe -isystem /Users/neil/miniconda3/envs/VTTS/include -fdebug-prefix-map=/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_9cx0p8xc6w/croot/python-split_1733933823061/work=/usr/local/src/conda/python-3.10.16 -fdebug-prefix-map=/Users/neil/miniconda3/envs/VTTS=/usr/local/src/conda-prefix -arch arm64 
+CONFIGURE_CFLAGS=	-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -ftree-vectorize -fPIC -fPIE -fstack-protector-strong -O2 -pipe -isystem /Users/neil/miniconda3/envs/VTTS_DIST/include -fdebug-prefix-map=/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_9cx0p8xc6w/croot/python-split_1733933823061/work=/usr/local/src/conda/python-3.10.16 -fdebug-prefix-map=/Users/neil/miniconda3/envs/VTTS_DIST=/usr/local/src/conda-prefix -arch arm64 
 # CFLAGS_NODIST is used for building the interpreter and stdlib C extensions.
 # Use it when a compiler flag should _not_ be part of the distutils CFLAGS
 # once Python is installed (Issue #21121).
@@ -90,8 +90,8 @@ CONFIGURE_CFLAGS_NODIST=  -std=c99 -Wextra -Wno-unused-result -Wno-unused-parame
 # Use it when a linker flag should _not_ be part of the distutils LDFLAGS
 # once Python is installed (bpo-35257)
 CONFIGURE_LDFLAGS_NODIST=  -Wl,-export_dynamic -g
-CONFIGURE_CPPFLAGS=	-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -D_FORTIFY_SOURCE=2 -isystem /Users/neil/miniconda3/envs/VTTS/include -mmacosx-version-min=11.1 -I/Users/neil/miniconda3/envs/VTTS/include
-CONFIGURE_LDFLAGS=	-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -Wl,-pie -Wl,-headerpad_max_install_names -Wl,-dead_strip_dylibs -Wl,-rpath,/Users/neil/miniconda3/envs/VTTS/lib -L/Users/neil/miniconda3/envs/VTTS/lib
+CONFIGURE_CPPFLAGS=	-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -D_FORTIFY_SOURCE=2 -isystem /Users/neil/miniconda3/envs/VTTS_DIST/include -mmacosx-version-min=11.1 -I/Users/neil/miniconda3/envs/VTTS_DIST/include
+CONFIGURE_LDFLAGS=	-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -Wl,-pie -Wl,-headerpad_max_install_names -Wl,-dead_strip_dylibs -Wl,-rpath,/Users/neil/miniconda3/envs/VTTS_DIST/lib -L/Users/neil/miniconda3/envs/VTTS_DIST/lib
 # Avoid assigning CFLAGS, LDFLAGS, etc. so users can use them on the
 # command line to append to these values without stomping the pre-set
 # values.
@@ -129,7 +129,7 @@ MULTIARCH=	darwin
 MULTIARCH_CPPFLAGS = -DMULTIARCH=\"darwin\"
 
 # Install prefix for architecture-independent files
-prefix=		/Users/neil/miniconda3/envs/VTTS
+prefix=		/Users/neil/miniconda3/envs/VTTS_DIST
 
 # Install prefix for architecture-dependent files
 exec_prefix=	${prefix}
@@ -202,13 +202,13 @@ RUNSHARED=
 ENSUREPIP=      no
 
 # OpenSSL options for setup.py so sysconfig can pick up AC_SUBST() vars.
-OPENSSL_INCLUDES=-I/Users/neil/miniconda3/envs/VTTS/include
+OPENSSL_INCLUDES=-I/Users/neil/miniconda3/envs/VTTS_DIST/include
 OPENSSL_LIBS=-lssl -lcrypto
-OPENSSL_LDFLAGS=-L/Users/neil/miniconda3/envs/VTTS/lib
+OPENSSL_LDFLAGS=-L/Users/neil/miniconda3/envs/VTTS_DIST/lib
 OPENSSL_RPATH=
 
 # Default zoneinfo.TZPATH. Added here to expose it in sysconfig.get_config_var
-TZPATH=/Users/neil/miniconda3/envs/VTTS/share/zoneinfo
+TZPATH=/Users/neil/miniconda3/envs/VTTS_DIST/share/zoneinfo
 
 # Modes for directories, executables and data files created by the
 # install process.  Default to user-only-writable for all file types.
@@ -217,7 +217,7 @@ EXEMODE=	755
 FILEMODE=	644
 
 # configure script arguments
-CONFIG_ARGS=	 '--prefix=/Users/neil/miniconda3/envs/VTTS' '--build=arm64-apple-darwin20.0.0' '--host=arm64-apple-darwin20.0.0' '--enable-ipv6' '--with-ensurepip=no' '--with-tzpath=/Users/neil/miniconda3/envs/VTTS/share/zoneinfo' '--with-computed-gotos' '--with-system-ffi' '--enable-loadable-sqlite-extensions' '--with-tcltk-includes=-I/Users/neil/miniconda3/envs/VTTS/include' '--with-tcltk-libs=-L/Users/neil/miniconda3/envs/VTTS/lib -ltcl8.6 -ltk8.6' '--with-platlibdir=lib' '--with-lto' '--enable-optimizations' '-oldincludedir=/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_9cx0p8xc6w/croot/python-split_1733933823061/_build_env/arm64-apple-darwin20.0.0/sysroot/usr/include' '--disable-shared' 'PROFILE_TASK=-m test --pgo' 'build_alias=arm64-apple-darwin20.0.0' 'host_alias=arm64-apple-darwin20.0.0' 'MACHDEP=darwin' 'CC=arm64-apple-darwin20.0.0-clang' 'CFLAGS=-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -ftree-vectorize -fPIC -fPIE -fstack-protector-strong -O2 -pipe -isystem /Users/neil/miniconda3/envs/VTTS/include -fdebug-prefix-map=/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_9cx0p8xc6w/croot/python-split_1733933823061/work=/usr/local/src/conda/python-3.10.16 -fdebug-prefix-map=/Users/neil/miniconda3/envs/VTTS=/usr/local/src/conda-prefix -arch arm64 ' 'LDFLAGS=-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -Wl,-pie -Wl,-headerpad_max_install_names -Wl,-dead_strip_dylibs -Wl,-rpath,/Users/neil/miniconda3/envs/VTTS/lib -L/Users/neil/miniconda3/envs/VTTS/lib' 'CPPFLAGS=-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -D_FORTIFY_SOURCE=2 -isystem /Users/neil/miniconda3/envs/VTTS/include -mmacosx-version-min=11.1 -I/Users/neil/miniconda3/envs/VTTS/include' 'PKG_CONFIG_PATH=/Users/neil/miniconda3/envs/VTTS/lib/pkgconfig'
+CONFIG_ARGS=	 '--prefix=/Users/neil/miniconda3/envs/VTTS_DIST' '--build=arm64-apple-darwin20.0.0' '--host=arm64-apple-darwin20.0.0' '--enable-ipv6' '--with-ensurepip=no' '--with-tzpath=/Users/neil/miniconda3/envs/VTTS_DIST/share/zoneinfo' '--with-computed-gotos' '--with-system-ffi' '--enable-loadable-sqlite-extensions' '--with-tcltk-includes=-I/Users/neil/miniconda3/envs/VTTS_DIST/include' '--with-tcltk-libs=-L/Users/neil/miniconda3/envs/VTTS_DIST/lib -ltcl8.6 -ltk8.6' '--with-platlibdir=lib' '--with-lto' '--enable-optimizations' '-oldincludedir=/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_9cx0p8xc6w/croot/python-split_1733933823061/_build_env/arm64-apple-darwin20.0.0/sysroot/usr/include' '--disable-shared' 'PROFILE_TASK=-m test --pgo' 'build_alias=arm64-apple-darwin20.0.0' 'host_alias=arm64-apple-darwin20.0.0' 'MACHDEP=darwin' 'CC=arm64-apple-darwin20.0.0-clang' 'CFLAGS=-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -ftree-vectorize -fPIC -fPIE -fstack-protector-strong -O2 -pipe -isystem /Users/neil/miniconda3/envs/VTTS_DIST/include -fdebug-prefix-map=/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_9cx0p8xc6w/croot/python-split_1733933823061/work=/usr/local/src/conda/python-3.10.16 -fdebug-prefix-map=/Users/neil/miniconda3/envs/VTTS_DIST=/usr/local/src/conda-prefix -arch arm64 ' 'LDFLAGS=-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -Wl,-pie -Wl,-headerpad_max_install_names -Wl,-dead_strip_dylibs -Wl,-rpath,/Users/neil/miniconda3/envs/VTTS_DIST/lib -L/Users/neil/miniconda3/envs/VTTS_DIST/lib' 'CPPFLAGS=-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -D_FORTIFY_SOURCE=2 -isystem /Users/neil/miniconda3/envs/VTTS_DIST/include -mmacosx-version-min=11.1 -I/Users/neil/miniconda3/envs/VTTS_DIST/include' 'PKG_CONFIG_PATH=/Users/neil/miniconda3/envs/VTTS_DIST/lib/pkgconfig'
 
 
 # Subdirectories with code
@@ -269,8 +269,8 @@ BUILD_GNU_TYPE=	arm64-apple-darwin20.0.0
 HOST_GNU_TYPE=	arm64-apple-darwin20.0.0
 
 # Tcl and Tk config info from --with-tcltk-includes and -libs options
-TCLTK_INCLUDES=	-I/Users/neil/miniconda3/envs/VTTS/include
-TCLTK_LIBS=	-L/Users/neil/miniconda3/envs/VTTS/lib -ltcl8.6 -ltk8.6
+TCLTK_INCLUDES=	-I/Users/neil/miniconda3/envs/VTTS_DIST/include
+TCLTK_LIBS=	-L/Users/neil/miniconda3/envs/VTTS_DIST/lib -ltcl8.6 -ltk8.6
 
 # The task to run while instrumented when building the profile-opt target.
 # To speed up profile generation, we don't run the full unit test suite
@@ -319,7 +319,7 @@ IO_OBJS=	\
 
 ##########################################################################
 
-LIBFFI_INCLUDEDIR=	/Users/neil/miniconda3/envs/VTTS/include
+LIBFFI_INCLUDEDIR=	/Users/neil/miniconda3/envs/VTTS_DIST/include
 
 ##########################################################################
 # Parser

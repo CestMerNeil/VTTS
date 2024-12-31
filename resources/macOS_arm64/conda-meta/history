@@ -1,5 +1,5 @@
-==> 2024-12-15 17:21:38 <==
-# cmd: /Users/neil/miniconda3/bin/conda create --name VTTS python=3.10
+==> 2024-12-31 19:22:58 <==
+# cmd: /Users/neil/miniconda3/bin/conda create -n VTTS_DIST python=3.10
 # conda version: 24.9.2
 +defaults/noarch::tzdata-2024b-h04d1e81_0
 +defaults/osx-arm64::bzip2-1.0.8-h80987f9_6

@@ -1,8 +1,8 @@
-prefix=/Users/neil/miniconda3/envs/VTTS
-exec_prefix=/Users/neil/miniconda3/envs/VTTS
-libdir=/Users/neil/miniconda3/envs/VTTS/lib
-sharedlibdir=/Users/neil/miniconda3/envs/VTTS/lib
-includedir=/Users/neil/miniconda3/envs/VTTS/include
+prefix=/Users/neil/miniconda3/envs/VTTS_DIST
+exec_prefix=/Users/neil/miniconda3/envs/VTTS_DIST
+libdir=/Users/neil/miniconda3/envs/VTTS_DIST/lib
+sharedlibdir=/Users/neil/miniconda3/envs/VTTS_DIST/lib
+includedir=/Users/neil/miniconda3/envs/VTTS_DIST/include
 
 Name: zlib
 Description: zlib compression library

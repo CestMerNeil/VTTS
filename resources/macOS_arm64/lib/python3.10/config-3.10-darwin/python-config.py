@@ -1,4 +1,4 @@
-#!/Users/neil/miniconda3/envs/VTTS/bin/python3.10
+#!/Users/neil/miniconda3/envs/VTTS_DIST/bin/python3.10
 # -*- python -*-
 
 # Keep this script in sync with python-config.sh.in

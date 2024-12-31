@@ -12,22 +12,22 @@ build_time_vars = {'ABIFLAGS': '',
  'BASECFLAGS': '-Wno-unused-result -Wsign-compare -Wunreachable-code',
  'BASECPPFLAGS': '-IObjects -IInclude -IPython',
  'BASEMODLIBS': '',
- 'BINDIR': '/Users/neil/miniconda3/envs/VTTS/bin',
- 'BINLIBDEST': '/Users/neil/miniconda3/envs/VTTS/lib/python3.10',
+ 'BINDIR': '/Users/neil/miniconda3/envs/VTTS_DIST/bin',
+ 'BINLIBDEST': '/Users/neil/miniconda3/envs/VTTS_DIST/lib/python3.10',
  'BLDLIBRARY': 'libpython3.10.a',
  'BLDSHARED': 'clang -bundle -undefined '
               'dynamic_lookup '
               ''
               ''
               ''
-              '-Wl,-rpath,/Users/neil/miniconda3/envs/VTTS/lib '
-              '-L/Users/neil/miniconda3/envs/VTTS/lib '
+              '-Wl,-rpath,/Users/neil/miniconda3/envs/VTTS_DIST/lib '
+              '-L/Users/neil/miniconda3/envs/VTTS_DIST/lib '
               ''
               ''
               ''
               ''
-              '-Wl,-rpath,/Users/neil/miniconda3/envs/VTTS/lib '
-              '-L/Users/neil/miniconda3/envs/VTTS/lib',
+              '-Wl,-rpath,/Users/neil/miniconda3/envs/VTTS_DIST/lib '
+              '-L/Users/neil/miniconda3/envs/VTTS_DIST/lib',
  'BUILDEXE': '.exe',
  'BUILDPYTHON': 'python.exe',
  'BUILD_GNU_TYPE': 'arm64-apple-darwin20.0.0',
@@ -39,14 +39,14 @@ build_time_vars = {'ABIFLAGS': '',
            ''
            '-fPIC   -O2  '
            '-isystem '
-           '/Users/neil/miniconda3/envs/VTTS/include '
+           '/Users/neil/miniconda3/envs/VTTS_DIST/include '
            ''
            ''
            '-arch arm64  '
            ''
            '-fPIC   -O2  '
            '-isystem '
-           '/Users/neil/miniconda3/envs/VTTS/include '
+           '/Users/neil/miniconda3/envs/VTTS_DIST/include '
            ''
            ''
            '-arch arm64 ',
@@ -58,7 +58,7 @@ build_time_vars = {'ABIFLAGS': '',
                      ''
                      '-fPIC   '
                      '-O2  -isystem '
-                     '/Users/neil/miniconda3/envs/VTTS/include '
+                     '/Users/neil/miniconda3/envs/VTTS_DIST/include '
                      ''
                      ''
                      '-arch arm64 ',
@@ -71,25 +71,25 @@ build_time_vars = {'ABIFLAGS': '',
  'CONFIGURE_CPPFLAGS': ''
                        ''
                        '-D_FORTIFY_SOURCE=2 -isystem '
-                       '/Users/neil/miniconda3/envs/VTTS/include '
+                       '/Users/neil/miniconda3/envs/VTTS_DIST/include '
                        '-mmacosx-version-min=11.1 '
-                       '-I/Users/neil/miniconda3/envs/VTTS/include',
+                       '-I/Users/neil/miniconda3/envs/VTTS_DIST/include',
  'CONFIGURE_LDFLAGS': ''
                       ''
                       ''
                       ''
-                      '-Wl,-rpath,/Users/neil/miniconda3/envs/VTTS/lib '
-                      '-L/Users/neil/miniconda3/envs/VTTS/lib',
+                      '-Wl,-rpath,/Users/neil/miniconda3/envs/VTTS_DIST/lib '
+                      '-L/Users/neil/miniconda3/envs/VTTS_DIST/lib',
  'CONFIGURE_LDFLAGS_NODIST': '-Wl,-export_dynamic -g',
- 'CONFIG_ARGS': "'--prefix=/Users/neil/miniconda3/envs/VTTS'"
+ 'CONFIG_ARGS': "'--prefix=/Users/neil/miniconda3/envs/VTTS_DIST'"
                 "'--build=arm64-apple-darwin20.0.0'"
                 "'--host=arm64-apple-darwin20.0.0''--enable-ipv6'"
                 "'--with-ensurepip=no'"
-                "'--with-tzpath=/Users/neil/miniconda3/envs/VTTS/share/zoneinfo:/Users/neil/miniconda3/envs/VTTS/share/tzinfo'"
+                "'--with-tzpath=/Users/neil/miniconda3/envs/VTTS_DIST/share/zoneinfo:/Users/neil/miniconda3/envs/VTTS_DIST/share/tzinfo'"
                 "'--with-computed-gotos''--with-system-ffi'"
                 "'--enable-loadable-sqlite-extensions'"
-                "'--with-tcltk-includes=-I/Users/neil/miniconda3/envs/VTTS/include'"
-                "'--with-tcltk-libs=-L/Users/neil/miniconda3/envs/VTTS/lib "
+                "'--with-tcltk-includes=-I/Users/neil/miniconda3/envs/VTTS_DIST/include'"
+                "'--with-tcltk-libs=-L/Users/neil/miniconda3/envs/VTTS_DIST/lib "
                 "-ltcl8.6 -ltk8.6''--with-platlibdir=lib''--with-lto'"
                 "'--enable-optimizations'"
                 "'-oldincludedir=/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_9cx0p8xc6w/croot/python-split_1733933823061/_build_env/arm64-apple-darwin20.0.0/sysroot/usr/include'"
@@ -100,24 +100,24 @@ build_time_vars = {'ABIFLAGS': '',
                 ''
                 '-fPIC   -O2 '
                 '-isystem '
-                '/Users/neil/miniconda3/envs/VTTS/include '
+                '/Users/neil/miniconda3/envs/VTTS_DIST/include '
                 ''
                 ''
                 "-arch arm64 ''LDFLAGS="
                 ''
                 ''
                 ''
-                '-Wl,-rpath,/Users/neil/miniconda3/envs/VTTS/lib '
-                "-L/Users/neil/miniconda3/envs/VTTS/lib'"
+                '-Wl,-rpath,/Users/neil/miniconda3/envs/VTTS_DIST/lib '
+                "-L/Users/neil/miniconda3/envs/VTTS_DIST/lib'"
                 "'CPPFLAGS="
                 ''
                 '-D_FORTIFY_SOURCE=2 -isystem '
-                '/Users/neil/miniconda3/envs/VTTS/include '
+                '/Users/neil/miniconda3/envs/VTTS_DIST/include '
                 '-mmacosx-version-min=11.1 '
-                "-I/Users/neil/miniconda3/envs/VTTS/include'"
-                "'PKG_CONFIG_PATH=/Users/neil/miniconda3/envs/VTTS/lib/pkgconfig'",
- 'CONFINCLUDEDIR': '/Users/neil/miniconda3/envs/VTTS/include',
- 'CONFINCLUDEPY': '/Users/neil/miniconda3/envs/VTTS/include/python3.10',
+                "-I/Users/neil/miniconda3/envs/VTTS_DIST/include'"
+                "'PKG_CONFIG_PATH=/Users/neil/miniconda3/envs/VTTS_DIST/lib/pkgconfig'",
+ 'CONFINCLUDEDIR': '/Users/neil/miniconda3/envs/VTTS_DIST/include',
+ 'CONFINCLUDEPY': '/Users/neil/miniconda3/envs/VTTS_DIST/include/python3.10',
  'COREPYTHONPATH': '',
  'COVERAGE_INFO': '/private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_9cx0p8xc6w/croot/python-split_1733933823061/work/build-static/coverage.info',
  'COVERAGE_REPORT': '/private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_9cx0p8xc6w/croot/python-split_1733933823061/work/build-static/lcov-report',
@@ -128,23 +128,23 @@ build_time_vars = {'ABIFLAGS': '',
              ''
              ''
              '-D_FORTIFY_SOURCE=2 -isystem '
-             '/Users/neil/miniconda3/envs/VTTS/include '
+             '/Users/neil/miniconda3/envs/VTTS_DIST/include '
              '-mmacosx-version-min=11.1 '
-             '-I/Users/neil/miniconda3/envs/VTTS/include '
+             '-I/Users/neil/miniconda3/envs/VTTS_DIST/include '
              ''
              ''
              '-D_FORTIFY_SOURCE=2 -isystem '
-             '/Users/neil/miniconda3/envs/VTTS/include '
+             '/Users/neil/miniconda3/envs/VTTS_DIST/include '
              '-mmacosx-version-min=11.1 '
-             '-I/Users/neil/miniconda3/envs/VTTS/include',
+             '-I/Users/neil/miniconda3/envs/VTTS_DIST/include',
  'CXX': 'clang++',
- 'DESTDIRS': '/Users/neil/miniconda3/envs/VTTS '
-             '/Users/neil/miniconda3/envs/VTTS/lib '
-             '/Users/neil/miniconda3/envs/VTTS/lib/python3.10 '
-             '/Users/neil/miniconda3/envs/VTTS/lib/python3.10/lib-dynload',
- 'DESTLIB': '/Users/neil/miniconda3/envs/VTTS/lib/python3.10',
+ 'DESTDIRS': '/Users/neil/miniconda3/envs/VTTS_DIST '
+             '/Users/neil/miniconda3/envs/VTTS_DIST/lib '
+             '/Users/neil/miniconda3/envs/VTTS_DIST/lib/python3.10 '
+             '/Users/neil/miniconda3/envs/VTTS_DIST/lib/python3.10/lib-dynload',
+ 'DESTLIB': '/Users/neil/miniconda3/envs/VTTS_DIST/lib/python3.10',
  'DESTPATH': '',
- 'DESTSHARED': '/Users/neil/miniconda3/envs/VTTS/lib/python3.10/lib-dynload',
+ 'DESTSHARED': '/Users/neil/miniconda3/envs/VTTS_DIST/lib/python3.10/lib-dynload',
  'DFLAGS': '',
  'DIRMODE': 755,
  'DIST': 'README.rst ChangeLog configure configure.ac acconfig.h pyconfig.h.in '
@@ -611,12 +611,12 @@ build_time_vars = {'ABIFLAGS': '',
  'HAVE_ZLIB_COPY': 1,
  'HAVE__GETPTY': 0,
  'HOST_GNU_TYPE': 'arm64-apple-darwin20.0.0',
- 'INCLDIRSTOMAKE': '/Users/neil/miniconda3/envs/VTTS/include '
-                   '/Users/neil/miniconda3/envs/VTTS/include '
-                   '/Users/neil/miniconda3/envs/VTTS/include/python3.10 '
-                   '/Users/neil/miniconda3/envs/VTTS/include/python3.10',
- 'INCLUDEDIR': '/Users/neil/miniconda3/envs/VTTS/include',
- 'INCLUDEPY': '/Users/neil/miniconda3/envs/VTTS/include/python3.10',
+ 'INCLDIRSTOMAKE': '/Users/neil/miniconda3/envs/VTTS_DIST/include '
+                   '/Users/neil/miniconda3/envs/VTTS_DIST/include '
+                   '/Users/neil/miniconda3/envs/VTTS_DIST/include/python3.10 '
+                   '/Users/neil/miniconda3/envs/VTTS_DIST/include/python3.10',
+ 'INCLUDEDIR': '/Users/neil/miniconda3/envs/VTTS_DIST/include',
+ 'INCLUDEPY': '/Users/neil/miniconda3/envs/VTTS_DIST/include/python3.10',
  'INSTALL': '/usr/bin/install -c',
  'INSTALL_DATA': '/usr/bin/install -c -m 644',
  'INSTALL_PROGRAM': '/usr/bin/install -c',
@@ -629,35 +629,35 @@ build_time_vars = {'ABIFLAGS': '',
                 'dynamic_lookup',
  'LDFLAGS': ''
             ''
-            '-Wl,-rpath,/Users/neil/miniconda3/envs/VTTS/lib '
-            '-L/Users/neil/miniconda3/envs/VTTS/lib '
+            '-Wl,-rpath,/Users/neil/miniconda3/envs/VTTS_DIST/lib '
+            '-L/Users/neil/miniconda3/envs/VTTS_DIST/lib '
             ''
             ''
-            '-Wl,-rpath,/Users/neil/miniconda3/envs/VTTS/lib '
-            '-L/Users/neil/miniconda3/envs/VTTS/lib',
+            '-Wl,-rpath,/Users/neil/miniconda3/envs/VTTS_DIST/lib '
+            '-L/Users/neil/miniconda3/envs/VTTS_DIST/lib',
  'LDLIBRARY': 'libpython3.10.a',
  'LDLIBRARYDIR': '',
  'LDSHARED': 'clang -bundle -undefined dynamic_lookup '
              ''
              ''
              ''
-             '-Wl,-rpath,/Users/neil/miniconda3/envs/VTTS/lib '
-             '-L/Users/neil/miniconda3/envs/VTTS/lib '
+             '-Wl,-rpath,/Users/neil/miniconda3/envs/VTTS_DIST/lib '
+             '-L/Users/neil/miniconda3/envs/VTTS_DIST/lib '
              ''
              ''
              ''
-             '-Wl,-rpath,/Users/neil/miniconda3/envs/VTTS/lib '
-             '-L/Users/neil/miniconda3/envs/VTTS/lib',
+             '-Wl,-rpath,/Users/neil/miniconda3/envs/VTTS_DIST/lib '
+             '-L/Users/neil/miniconda3/envs/VTTS_DIST/lib',
  'LDVERSION': '3.10',
  'LIBC': '',
- 'LIBDEST': '/Users/neil/miniconda3/envs/VTTS/lib/python3.10',
- 'LIBDIR': '/Users/neil/miniconda3/envs/VTTS/lib',
- 'LIBFFI_INCLUDEDIR': '/Users/neil/miniconda3/envs/VTTS/include',
+ 'LIBDEST': '/Users/neil/miniconda3/envs/VTTS_DIST/lib/python3.10',
+ 'LIBDIR': '/Users/neil/miniconda3/envs/VTTS_DIST/lib',
+ 'LIBFFI_INCLUDEDIR': '/Users/neil/miniconda3/envs/VTTS_DIST/include',
  'LIBM': '',
  'LIBOBJDIR': 'Python/',
  'LIBOBJS': '',
- 'LIBPC': '/Users/neil/miniconda3/envs/VTTS/lib/pkgconfig',
- 'LIBPL': '/Users/neil/miniconda3/envs/VTTS/lib/python3.10/config-3.10-darwin',
+ 'LIBPC': '/Users/neil/miniconda3/envs/VTTS_DIST/lib/pkgconfig',
+ 'LIBPL': '/Users/neil/miniconda3/envs/VTTS_DIST/lib/python3.10/config-3.10-darwin',
  'LIBPYTHON': '',
  'LIBRARY': 'libpython3.10.a',
  'LIBRARY_DEPS': 'libpython3.10.a',
@@ -677,13 +677,13 @@ build_time_vars = {'ABIFLAGS': '',
  'LOCALMODLIBS': '',
  'MACHDEP': 'darwin',
  'MACHDEP_OBJS': '',
- 'MACHDESTLIB': '/Users/neil/miniconda3/envs/VTTS/lib/python3.10',
+ 'MACHDESTLIB': '/Users/neil/miniconda3/envs/VTTS_DIST/lib/python3.10',
  'MACOSX_DEPLOYMENT_TARGET': '11.1',
  'MAINCC': 'clang',
  'MAJOR_IN_MKDEV': 0,
  'MAJOR_IN_SYSMACROS': 0,
  'MAKESETUP': '/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_9cx0p8xc6w/croot/python-split_1733933823061/work/Modules/makesetup',
- 'MANDIR': '/Users/neil/miniconda3/envs/VTTS/share/man',
+ 'MANDIR': '/Users/neil/miniconda3/envs/VTTS_DIST/share/man',
  'MKDIR_P': '/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_9cx0p8xc6w/croot/python-split_1733933823061/work/install-sh '
             '-c -d',
  'MODBUILT_NAMES': 'posix  errno  pwd  _sre  _codecs  _weakref  _functools  '
@@ -710,8 +710,8 @@ build_time_vars = {'ABIFLAGS': '',
  'MVWDELCH_IS_EXPRESSION': 1,
  'NO_AS_NEEDED': '',
  'OBJECT_OBJS': '\\',
- 'OPENSSL_INCLUDES': '-I/Users/neil/miniconda3/envs/VTTS/include',
- 'OPENSSL_LDFLAGS': '-L/Users/neil/miniconda3/envs/VTTS/lib',
+ 'OPENSSL_INCLUDES': '-I/Users/neil/miniconda3/envs/VTTS_DIST/include',
+ 'OPENSSL_LDFLAGS': '-L/Users/neil/miniconda3/envs/VTTS_DIST/lib',
  'OPENSSL_LIBS': '-lssl -lcrypto',
  'OPENSSL_RPATH': '',
  'OPT': '-DNDEBUG -fwrapv -O2 -Wall',
@@ -755,14 +755,14 @@ build_time_vars = {'ABIFLAGS': '',
                              ''
                              '-fPIC  '
                              '-O2  -isystem '
-                             '/Users/neil/miniconda3/envs/VTTS/include '
+                             '/Users/neil/miniconda3/envs/VTTS_DIST/include '
                              ''
                              ''
                              '-arch arm64  '
                              ''
                              '-fPIC  '
                              '-O2  -isystem '
-                             '/Users/neil/miniconda3/envs/VTTS/include '
+                             '/Users/neil/miniconda3/envs/VTTS_DIST/include '
                              ''
                              ''
                              '-arch arm64   -std=c99 -Wextra '
@@ -778,29 +778,29 @@ build_time_vars = {'ABIFLAGS': '',
                              ''
                              ''
                              '-D_FORTIFY_SOURCE=2 -isystem '
-                             '/Users/neil/miniconda3/envs/VTTS/include '
+                             '/Users/neil/miniconda3/envs/VTTS_DIST/include '
                              '-mmacosx-version-min=11.1 '
-                             '-I/Users/neil/miniconda3/envs/VTTS/include '
+                             '-I/Users/neil/miniconda3/envs/VTTS_DIST/include '
                              ''
                              ''
                              '-D_FORTIFY_SOURCE=2 -isystem '
-                             '/Users/neil/miniconda3/envs/VTTS/include '
+                             '/Users/neil/miniconda3/envs/VTTS_DIST/include '
                              '-mmacosx-version-min=11.1 '
-                             '-I/Users/neil/miniconda3/envs/VTTS/include '
+                             '-I/Users/neil/miniconda3/envs/VTTS_DIST/include '
                              '-DPy_BUILD_CORE_BUILTIN',
  'PY_CFLAGS': '-Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG '
               '-fwrapv -O2 -Wall '
               ''
               '-fPIC   -O2  '
               '-isystem '
-              '/Users/neil/miniconda3/envs/VTTS/include '
+              '/Users/neil/miniconda3/envs/VTTS_DIST/include '
               ''
               ''
               '-arch arm64  '
               ''
               '-fPIC   -O2  '
               '-isystem '
-              '/Users/neil/miniconda3/envs/VTTS/include '
+              '/Users/neil/miniconda3/envs/VTTS_DIST/include '
               ''
               ''
               '-arch arm64 ',
@@ -816,14 +816,14 @@ build_time_vars = {'ABIFLAGS': '',
                    ''
                    '-fPIC   -O2 '
                    '-isystem '
-                   '/Users/neil/miniconda3/envs/VTTS/include '
+                   '/Users/neil/miniconda3/envs/VTTS_DIST/include '
                    ''
                    ''
                    '-arch arm64  '
                    ''
                    '-fPIC   -O2 '
                    '-isystem '
-                   '/Users/neil/miniconda3/envs/VTTS/include '
+                   '/Users/neil/miniconda3/envs/VTTS_DIST/include '
                    ''
                    ''
                    '-arch arm64   -std=c99 -Wextra '
@@ -837,57 +837,57 @@ build_time_vars = {'ABIFLAGS': '',
                    ''
                    ''
                    '-D_FORTIFY_SOURCE=2 -isystem '
-                   '/Users/neil/miniconda3/envs/VTTS/include '
+                   '/Users/neil/miniconda3/envs/VTTS_DIST/include '
                    '-mmacosx-version-min=11.1 '
-                   '-I/Users/neil/miniconda3/envs/VTTS/include '
+                   '-I/Users/neil/miniconda3/envs/VTTS_DIST/include '
                    ''
                    ''
                    '-D_FORTIFY_SOURCE=2 -isystem '
-                   '/Users/neil/miniconda3/envs/VTTS/include '
+                   '/Users/neil/miniconda3/envs/VTTS_DIST/include '
                    '-mmacosx-version-min=11.1 '
-                   '-I/Users/neil/miniconda3/envs/VTTS/include '
+                   '-I/Users/neil/miniconda3/envs/VTTS_DIST/include '
                    '-DPy_BUILD_CORE',
  'PY_CORE_LDFLAGS': ''
                     ''
                     ''
                     ''
-                    '-Wl,-rpath,/Users/neil/miniconda3/envs/VTTS/lib '
-                    '-L/Users/neil/miniconda3/envs/VTTS/lib '
+                    '-Wl,-rpath,/Users/neil/miniconda3/envs/VTTS_DIST/lib '
+                    '-L/Users/neil/miniconda3/envs/VTTS_DIST/lib '
                     ''
                     ''
                     ''
                     ''
-                    '-Wl,-rpath,/Users/neil/miniconda3/envs/VTTS/lib '
-                    '-L/Users/neil/miniconda3/envs/VTTS/lib '
+                    '-Wl,-rpath,/Users/neil/miniconda3/envs/VTTS_DIST/lib '
+                    '-L/Users/neil/miniconda3/envs/VTTS_DIST/lib '
                     '-Wl,-export_dynamic -g',
  'PY_CPPFLAGS': '-IObjects -IInclude -IPython -I. '
                 '-I/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_9cx0p8xc6w/croot/python-split_1733933823061/work/Include '
                 ''
                 ''
                 '-D_FORTIFY_SOURCE=2 -isystem '
-                '/Users/neil/miniconda3/envs/VTTS/include '
+                '/Users/neil/miniconda3/envs/VTTS_DIST/include '
                 '-mmacosx-version-min=11.1 '
-                '-I/Users/neil/miniconda3/envs/VTTS/include '
+                '-I/Users/neil/miniconda3/envs/VTTS_DIST/include '
                 ''
                 ''
                 '-D_FORTIFY_SOURCE=2 -isystem '
-                '/Users/neil/miniconda3/envs/VTTS/include '
+                '/Users/neil/miniconda3/envs/VTTS_DIST/include '
                 '-mmacosx-version-min=11.1 '
-                '-I/Users/neil/miniconda3/envs/VTTS/include',
+                '-I/Users/neil/miniconda3/envs/VTTS_DIST/include',
  'PY_ENABLE_SHARED': 0,
  'PY_FORMAT_SIZE_T': '"z"',
  'PY_LDFLAGS': ''
                ''
                ''
                ''
-               '-Wl,-rpath,/Users/neil/miniconda3/envs/VTTS/lib '
-               '-L/Users/neil/miniconda3/envs/VTTS/lib '
+               '-Wl,-rpath,/Users/neil/miniconda3/envs/VTTS_DIST/lib '
+               '-L/Users/neil/miniconda3/envs/VTTS_DIST/lib '
                ''
                ''
                ''
                ''
-               '-Wl,-rpath,/Users/neil/miniconda3/envs/VTTS/lib '
-               '-L/Users/neil/miniconda3/envs/VTTS/lib',
+               '-Wl,-rpath,/Users/neil/miniconda3/envs/VTTS_DIST/lib '
+               '-L/Users/neil/miniconda3/envs/VTTS_DIST/lib',
  'PY_LDFLAGS_NODIST': '-Wl,-export_dynamic -g',
  'PY_SSL_DEFAULT_CIPHERS': 1,
  'PY_SSL_DEFAULT_CIPHER_STRING': 0,
@@ -896,14 +896,14 @@ build_time_vars = {'ABIFLAGS': '',
                         ''
                         '-fPIC   '
                         '-O2  -isystem '
-                        '/Users/neil/miniconda3/envs/VTTS/include '
+                        '/Users/neil/miniconda3/envs/VTTS_DIST/include '
                         ''
                         ''
                         '-arch arm64  '
                         ''
                         '-fPIC   '
                         '-O2  -isystem '
-                        '/Users/neil/miniconda3/envs/VTTS/include '
+                        '/Users/neil/miniconda3/envs/VTTS_DIST/include '
                         ''
                         ''
                         '-arch arm64   -std=c99 -Wextra '
@@ -918,15 +918,15 @@ build_time_vars = {'ABIFLAGS': '',
                         ''
                         ''
                         '-D_FORTIFY_SOURCE=2 -isystem '
-                        '/Users/neil/miniconda3/envs/VTTS/include '
+                        '/Users/neil/miniconda3/envs/VTTS_DIST/include '
                         '-mmacosx-version-min=11.1 '
-                        '-I/Users/neil/miniconda3/envs/VTTS/include '
+                        '-I/Users/neil/miniconda3/envs/VTTS_DIST/include '
                         ''
                         ''
                         '-D_FORTIFY_SOURCE=2 -isystem '
-                        '/Users/neil/miniconda3/envs/VTTS/include '
+                        '/Users/neil/miniconda3/envs/VTTS_DIST/include '
                         '-mmacosx-version-min=11.1 '
-                        '-I/Users/neil/miniconda3/envs/VTTS/include',
+                        '-I/Users/neil/miniconda3/envs/VTTS_DIST/include',
  'Py_DEBUG': 0,
  'Py_ENABLE_SHARED': 0,
  'Py_HASH_ALGORITHM': 0,
@@ -936,7 +936,7 @@ build_time_vars = {'ABIFLAGS': '',
  'RESSRCDIR': 'Mac/Resources/framework',
  'RETSIGTYPE': 'void',
  'RUNSHARED': '',
- 'SCRIPTDIR': '/Users/neil/miniconda3/envs/VTTS/lib',
+ 'SCRIPTDIR': '/Users/neil/miniconda3/envs/VTTS_DIST/lib',
  'SETPGRP_HAVE_ARG': 0,
  'SHELL': '/bin/sh',
  'SHLIBS': '-ldl   -framework CoreFoundation',
@@ -973,8 +973,8 @@ build_time_vars = {'ABIFLAGS': '',
  'SUBDIRSTOO': 'Include Lib Misc',
  'SYSLIBS': '',
  'SYS_SELECT_WITH_SYS_TIME': 1,
- 'TCLTK_INCLUDES': '-I/Users/neil/miniconda3/envs/VTTS/include',
- 'TCLTK_LIBS': '-L/Users/neil/miniconda3/envs/VTTS/lib '
+ 'TCLTK_INCLUDES': '-I/Users/neil/miniconda3/envs/VTTS_DIST/include',
+ 'TCLTK_LIBS': '-L/Users/neil/miniconda3/envs/VTTS_DIST/lib '
                '-ltcl8.6 -ltk8.6',
  'TESTOPTS': '',
  'TESTPATH': '',
@@ -989,7 +989,7 @@ build_time_vars = {'ABIFLAGS': '',
  'TIMEMODULE_LIB': 0,
  'TIME_WITH_SYS_TIME': 1,
  'TM_IN_SYS_TIME': 0,
- 'TZPATH': '/Users/neil/miniconda3/envs/VTTS/share/zoneinfo:/Users/neil/miniconda3/envs/VTTS/share/tzinfo',
+ 'TZPATH': '/Users/neil/miniconda3/envs/VTTS_DIST/share/zoneinfo:/Users/neil/miniconda3/envs/VTTS_DIST/share/tzinfo',
  'UNICODE_DEPS': '\\',
  'UNIVERSALSDK': '',
  'UPDATE_FILE': '/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_9cx0p8xc6w/croot/python-split_1733933823061/work/Tools/scripts/update_file.py',
@@ -1011,7 +1011,7 @@ build_time_vars = {'ABIFLAGS': '',
  'XMLLIBSUBDIRS': 'xml xml/dom xml/etree xml/parsers xml/sax',
  'abs_builddir': '/private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_9cx0p8xc6w/croot/python-split_1733933823061/work/build-static',
  'abs_srcdir': '/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_9cx0p8xc6w/croot/python-split_1733933823061/work',
- 'datarootdir': '/Users/neil/miniconda3/envs/VTTS/share',
- 'exec_prefix': '/Users/neil/miniconda3/envs/VTTS',
- 'prefix': '/Users/neil/miniconda3/envs/VTTS',
+ 'datarootdir': '/Users/neil/miniconda3/envs/VTTS_DIST/share',
+ 'exec_prefix': '/Users/neil/miniconda3/envs/VTTS_DIST',
+ 'prefix': '/Users/neil/miniconda3/envs/VTTS_DIST',
  'srcdir': '/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_9cx0p8xc6w/croot/python-split_1733933823061/work'}
