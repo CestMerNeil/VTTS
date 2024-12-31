@@ -2,6 +2,7 @@ from flask import Flask
 from flask_cors import CORS
 from routes.health import health_bp
 from routes.model import model_bp
+from routes.file import file_bp
 import logging
 
 # 设置日志
@@ -11,6 +12,7 @@ stellarcore = Flask(__name__)
 CORS(stellarcore) 
 stellarcore.register_blueprint(health_bp, url_prefix='/health')
 stellarcore.register_blueprint(model_bp, url_prefix='/model')
+stellarcore.register_blueprint(file_bp, url_prefix='/file')
 
 # 开启调试模式
 stellarcore.debug = True

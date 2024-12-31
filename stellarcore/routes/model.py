@@ -1,6 +1,9 @@
+# routes/model.py
 from flask import Blueprint, request, jsonify, send_file
-from services.generate import generate_audio, list_generated_audios
+from services.generate import generate_audio
 from services.get_models import get_available_models
+import os
+import logging
 
 model_bp = Blueprint('model', __name__)
 
@@ -9,10 +12,16 @@ def list_models():
     """获取所有可用的模型"""
     try:
         models = get_available_models()
-        return jsonify(models)
+        return jsonify({
+            'status': 'success',
+            'models': models
+        })
     except Exception as e:
         logging.error(f"Error getting models: {str(e)}", exc_info=True)
-        return jsonify({'error': str(e)}), 500
+        return jsonify({
+            'status': 'error',
+            'message': str(e)
+        }), 500
 
 @model_bp.route('/tts', methods=['POST'])
 def text_to_speech():
@@ -39,32 +48,13 @@ def text_to_speech():
         })
         
     except ValueError as e:
-        # 处理模型不存在等验证错误
         return jsonify({
             'status': 'error',
             'message': str(e)
         }), 400
         
     except Exception as e:
-        # 处理其他错误
-        return jsonify({
-            'status': 'error',
-            'message': str(e)
-        }), 500
-
-@model_bp.route('/audios', methods=['GET'])
-def list_audios():
-    """获取所有生成的音频文件列表"""
-    try:
-        audio_files = list_generated_audios()
-        
-        return jsonify({
-            'status': 'success',
-            'audios': audio_files
-        })
-        
-    except Exception as e:
-        logging.error(f"Error listing audio files: {str(e)}", exc_info=True)
+        logging.error(f"Error generating audio: {str(e)}", exc_info=True)
         return jsonify({
             'status': 'error',
             'message': str(e)
@@ -74,12 +64,23 @@ def list_audios():
 def get_audio(filename):
     """获取生成的音频文件"""
     try:
+        # 构建音频文件的完整路径
+        BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        audio_path = os.path.join(BASE_DIR, 'services', 'audio', filename)
+        
+        if not os.path.exists(audio_path):
+            return jsonify({
+                'status': 'error',
+                'message': 'Audio file not found'
+            }), 404
+            
         return send_file(
-            f'services/audio/{filename}',
+            audio_path,
             mimetype='audio/wav'
         )
     except Exception as e:
+        logging.error(f"Error getting audio file: {str(e)}", exc_info=True)
         return jsonify({
             'status': 'error',
-            'message': f'Audio file not found: {str(e)}'
-        }), 404
+            'message': str(e)
+        }), 500

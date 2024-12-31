@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Play, Pause, SkipForward, SkipBack, Volume2, Repeat } from 'lucide-react';
+import { Play, Pause, SkipForward, SkipBack, Volume2, Repeat, Trash2, AlertCircle } from 'lucide-react';
 import { useTranslation } from "react-i18next";
 
 const AudioPlayer = () => {
@@ -10,6 +10,7 @@ const AudioPlayer = () => {
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [loopMode, setLoopMode] = useState('none');
+    const [deleteError, setDeleteError] = useState('');
     const audioRef = useRef(null);
 
     useEffect(() => {
@@ -18,28 +19,67 @@ const AudioPlayer = () => {
 
     const fetchAudioFiles = async () => {
         try {
-            const response = await fetch('http://localhost:5001/model/audios');
+            const response = await fetch('http://localhost:5001/file/audio');
             const data = await response.json();
             if (data.status === 'success') {
-                const processedFiles = data.audios.map(path => ({
-                    path: path,
-                    name: path.split('/').pop()
+                // 转换文件列表格式
+                const processedFiles = data.files.map(filename => ({
+                    name: filename,
+                    // 注意这里使用了正确的音频文件访问路径
+                    path: `http://localhost:5001/model/audio/${filename}`
                 }));
                 setAudioFiles(processedFiles);
             }
         } catch (error) {
             console.error('Failed to fetch audio files:', error);
+            setDeleteError('获取音频文件列表失败');
         }
     };
 
-    const handlePlay = () => {
-        if (audioRef.current) {
-            if (isPlaying) {
-                audioRef.current.pause();
-            } else {
-                audioRef.current.play();
+    const handleDelete = async (file, event) => {
+        event.stopPropagation();
+
+        try {
+            // 如果正在播放要删除的文件，先停止播放
+            if (selectedFile?.name === file.name) {
+                if (audioRef.current) {
+                    audioRef.current.pause();
+                }
+                setIsPlaying(false);
+                setSelectedFile(null);
             }
-            setIsPlaying(!isPlaying);
+
+            const response = await fetch(`http://localhost:5001/file/audio/${file.name}`, {
+                method: 'DELETE'
+            });
+
+            const data = await response.json();
+
+            if (data.status === 'success') {
+                fetchAudioFiles();
+                setDeleteError('');
+            } else {
+                setDeleteError(data.message || '删除失败');
+            }
+        } catch (error) {
+            console.error('Failed to delete audio file:', error);
+            setDeleteError('删除文件时发生错误');
+        }
+    };
+
+    const handlePlay = async () => {
+        if (audioRef.current) {
+            try {
+                if (isPlaying) {
+                    await audioRef.current.pause();
+                } else {
+                    await audioRef.current.play();
+                }
+                setIsPlaying(!isPlaying);
+            } catch (error) {
+                console.error('Playback error:', error);
+                setDeleteError('播放音频时出错');
+            }
         }
     };
 
@@ -51,10 +91,11 @@ const AudioPlayer = () => {
     };
 
     const handleEnded = () => {
-        if (loopMode === 'single') {
+        if (loopMode === 'single' && audioRef.current) {
+            audioRef.current.currentTime = 0;
             audioRef.current.play();
-        } else if (loopMode === 'all') {
-            const currentIndex = audioFiles.findIndex(file => file.path === selectedFile.path);
+        } else if (loopMode === 'all' && audioFiles.length > 1) {
+            const currentIndex = audioFiles.findIndex(file => file.name === selectedFile.name);
             const nextIndex = (currentIndex + 1) % audioFiles.length;
             handleSelectFile(audioFiles[nextIndex]);
         } else {
@@ -62,13 +103,24 @@ const AudioPlayer = () => {
         }
     };
 
-    const handleSelectFile = (file) => {
+    const handleSelectFile = async (file) => {
         setSelectedFile(file);
         setIsPlaying(false);
-        setTimeout(() => {
+
+        // 确保在切换文件时重置时间
+        setCurrentTime(0);
+        setDuration(0);
+
+        // 使用 setTimeout 确保 audio 元素已更新
+        setTimeout(async () => {
             if (audioRef.current) {
-                audioRef.current.play();
-                setIsPlaying(true);
+                try {
+                    await audioRef.current.play();
+                    setIsPlaying(true);
+                } catch (error) {
+                    console.error('Error playing audio:', error);
+                    setDeleteError('播放音频时出错');
+                }
             }
         }, 100);
     };
@@ -99,22 +151,42 @@ const AudioPlayer = () => {
 
     return (
         <div className="p-6">
+            {deleteError && (
+                <div className="alert alert-error mb-4">
+                    <AlertCircle className="h-4 w-4" />
+                    <span>{deleteError}</span>
+                </div>
+            )}
+
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {/* 音频列表 */}
                 <div className="card bg-base-100 shadow-xl">
                     <div className="card-body">
                         <h2 className="card-title mb-4">{t('audio.title')}</h2>
-                        <div className="space-y-2 max-h-[400px] overflow-y-auto">
-                            {audioFiles.map((file, index) => (
-                                <div
-                                    key={index}
-                                    className={`p-4 rounded-xl cursor-pointer hover:bg-base-200 transition-colors
-                    ${selectedFile?.path === file.path ? 'bg-primary/10' : ''}`}
-                                    onClick={() => handleSelectFile(file)}
-                                >
-                                    <p className="text-sm font-medium">{file.name}</p>
+                        <div className="space-y-2 max-h-96 overflow-y-auto">
+                            {audioFiles.length === 0 ? (
+                                <div className="text-center text-base-content/50 py-4">
+                                    还没有生成的音频
                                 </div>
-                            ))}
+                            ) : (
+                                audioFiles.map((file, index) => (
+                                    <div
+                                        key={index}
+                                        className={`p-4 rounded-xl cursor-pointer hover:bg-base-200 transition-colors flex justify-between items-center
+                                        ${selectedFile?.name === file.name ? 'bg-primary/10' : ''}`}
+                                        onClick={() => handleSelectFile(file)}
+                                    >
+                                        <p className="text-sm font-medium">{file.name}</p>
+                                        <button
+                                            className="btn btn-ghost btn-sm text-error hover:bg-error/20"
+                                            onClick={(e) => handleDelete(file, e)}
+                                            title={t('audio.controls.delete')}
+                                        >
+                                            <Trash2 size={18} />
+                                        </button>
+                                    </div>
+                                ))
+                            )}
                         </div>
                     </div>
                 </div>
@@ -138,6 +210,7 @@ const AudioPlayer = () => {
                                     src={selectedFile.path}
                                     onTimeUpdate={handleTimeUpdate}
                                     onEnded={handleEnded}
+                                    onError={() => setDeleteError('音频文件加载失败')}
                                 />
 
                                 {/* 进度条 */}
@@ -150,7 +223,9 @@ const AudioPlayer = () => {
                                         onChange={(e) => {
                                             const time = Number(e.target.value);
                                             setCurrentTime(time);
-                                            audioRef.current.currentTime = time;
+                                            if (audioRef.current) {
+                                                audioRef.current.currentTime = time;
+                                            }
                                         }}
                                         className="range range-primary range-sm"
                                     />
@@ -164,6 +239,14 @@ const AudioPlayer = () => {
                                 <div className="flex justify-center items-center gap-4 mt-4">
                                     <button
                                         className="btn btn-circle btn-primary"
+                                        onClick={() => {
+                                            if (audioFiles.length > 1) {
+                                                const currentIndex = audioFiles.findIndex(file => file.name === selectedFile.name);
+                                                const prevIndex = (currentIndex - 1 + audioFiles.length) % audioFiles.length;
+                                                handleSelectFile(audioFiles[prevIndex]);
+                                            }
+                                        }}
+                                        disabled={audioFiles.length <= 1}
                                         title={t('audio.controls.previous')}
                                     >
                                         <SkipBack size={20} />
@@ -177,6 +260,14 @@ const AudioPlayer = () => {
                                     </button>
                                     <button
                                         className="btn btn-circle btn-primary"
+                                        onClick={() => {
+                                            if (audioFiles.length > 1) {
+                                                const currentIndex = audioFiles.findIndex(file => file.name === selectedFile.name);
+                                                const nextIndex = (currentIndex + 1) % audioFiles.length;
+                                                handleSelectFile(audioFiles[nextIndex]);
+                                            }
+                                        }}
+                                        disabled={audioFiles.length <= 1}
                                         title={t('audio.controls.next')}
                                     >
                                         <SkipForward size={20} />
