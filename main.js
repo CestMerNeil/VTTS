@@ -7,8 +7,8 @@ const fs = require("fs");
 class PythonEnvironment {
     constructor() {
         this.isWindows = process.platform === "win32";
-        // 修改为实际的 python_env 路径
-        this.envPath = path.join(__dirname, "resources", "python_env");
+        // 修改为新的路径
+        this.envPath = path.join(__dirname, "resources", process.platform === "darwin" ? "macOS_arm64" : "Windows_x64");
         this.flaskProcess = null;
 
         // 设置 Python 解释器路径

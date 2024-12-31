@@ -4,5 +4,11 @@
         "config_path": "services/models/zh-CN/config.json",
         "model_file": "services/models/zh-CN/model_file.pth",
         "scale_stats": "services/models/zh-CN/scale_stats.npy"
+    },
+    "en": {
+        "name": "en",
+        "config_path": "services/models/en/config.json",
+        "model_file": "services/models/en/model_file.pth",
+        "scale_stats": "services/models/en/scale_stats.npy"
     }
 }

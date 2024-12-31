@@ -13,7 +13,7 @@ def ensure_audio_directory():
     audio_dir.mkdir(parents=True, exist_ok=True)
     return audio_dir
 
-def generate_audio(text, model_name):
+def generate_audio(text, model_name, file_name=None):
     """使用指定的模型生成音频"""
     models = get_available_models()
     if model_name not in models:
@@ -32,6 +32,8 @@ def generate_audio(text, model_name):
     
     # 生成唯一的输出文件名
     output_file = f"{model_name}_{uuid.uuid4()}.wav"
+    if file_name:
+        output_file = f"{file_name}.wav"
     output_path = str(audio_dir / output_file)
     
     try:

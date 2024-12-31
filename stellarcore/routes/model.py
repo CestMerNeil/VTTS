@@ -28,9 +28,10 @@ def text_to_speech():
         
         text = data['text']
         model_name = data['model']
+        file_name = data.get('filename', None)
         
         # 生成音频
-        audio_path = generate_audio(text, model_name)
+        audio_path = generate_audio(text, model_name, file_name)
         
         return jsonify({
             'status': 'success',

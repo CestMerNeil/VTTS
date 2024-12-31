@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Volume2, Loader2 } from 'lucide-react';
 
 const TTSGenerator = () => {
@@ -6,10 +6,28 @@ const TTSGenerator = () => {
     const [isGenerating, setIsGenerating] = useState(false);
     const [error, setError] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
+    const [models, setModels] = useState({});
+    const [selectedModel, setSelectedModel] = useState('zh-CN');
+    const [filename, setFilename] = useState('');
+
+    useEffect(() => {
+        const fetchModels = async () => {
+            try {
+                const response = await fetch('http://localhost:5001/model/models');
+                const data = await response.json();
+                setModels(data);
+                if (Object.keys(data).length > 0) {
+                    setSelectedModel(Object.keys(data)[0]);
+                }
+            } catch (error) {
+                console.error('Failed to fetch models:', error);
+            }
+        };
+        fetchModels();
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         if (!text.trim()) {
             setError('请输入要转换的文本');
             return;
@@ -22,18 +40,16 @@ const TTSGenerator = () => {
         try {
             const response = await fetch('http://localhost:5001/model/tts', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     text: text.trim(),
-                    model: 'zh-CN'
+                    model: selectedModel,
+                    model_config: models[selectedModel],
+                    filename: filename
                 })
             });
 
-            if (!response.ok) {
-                throw new Error('生成失败');
-            }
+            if (!response.ok) throw new Error('生成失败');
 
             setSuccessMessage('音频生成成功！请到音频列表查看。');
             setText('');
@@ -68,6 +84,25 @@ const TTSGenerator = () => {
                                 />
                             </div>
 
+                            <select
+                                className="select select-bordered w-full max-w-xs mt-6"
+                                value={selectedModel}
+                                onChange={(e) => setSelectedModel(e.target.value)}
+                            >
+                                {Object.entries(models).map(([key, model]) => (
+                                    <option key={key} value={key}>
+                                        {model.name}
+                                    </option>
+                                ))}
+                            </select>
+
+                            <input
+                                type="text"
+                                placeholder="请输入文件名"
+                                onChange={(e) => setFilename(e.target.value)}
+                                class="input input-bordered w-full max-w-xs mt-6"
+                            />
+
                             {error && (
                                 <div className="alert alert-error mt-4">
                                     <span>{error}</span>
@@ -91,9 +126,7 @@ const TTSGenerator = () => {
                                             <Loader2 className="animate-spin" size={20} />
                                             生成中...
                                         </>
-                                    ) : (
-                                        '开始生成'
-                                    )}
+                                    ) : '开始生成'}
                                 </button>
                             </div>
                         </form>

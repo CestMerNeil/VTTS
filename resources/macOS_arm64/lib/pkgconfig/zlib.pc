@@ -1,0 +1,13 @@
+prefix=/Users/neil/miniconda3/envs/VTTS
+exec_prefix=/Users/neil/miniconda3/envs/VTTS
+libdir=/Users/neil/miniconda3/envs/VTTS/lib
+sharedlibdir=/Users/neil/miniconda3/envs/VTTS/lib
+includedir=/Users/neil/miniconda3/envs/VTTS/include
+
+Name: zlib
+Description: zlib compression library
+Version: 1.2.13
+
+Requires:
+Libs: -L${libdir} -L${sharedlibdir} -lz
+Cflags: -I${includedir}
