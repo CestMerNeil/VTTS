@@ -19,12 +19,13 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 20
+          cache: 'yarn'
 
       - name: Install Node Dependencies
         run: |
-          yarn install
-          cd nebulaview && yarn install
+          yarn install --force
+          cd nebulaview && yarn install --force
 
       - name: Build React App
         run: yarn build:react
