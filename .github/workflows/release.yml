@@ -24,8 +24,8 @@ jobs:
 
       - name: Install Node Dependencies
         run: |
-          yarn install --force
-          cd nebulaview && yarn install --force
+          yarn install
+          cd nebulaview && yarn install
 
       - name: Build React App
         run: yarn build:react
