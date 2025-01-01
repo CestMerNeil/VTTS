@@ -1,4 +1,22 @@
 {
+  "name": "vtts",
+  "version": "1.0.0",
+  "main": "main.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dev": "NODE_ENV=development electron .",
+    "build:react": "cd nebulaview && yarn build",
+    "build:electron": "electron-builder",
+    "build": "yarn build:react && yarn build:electron"
+  },
+  "devDependencies": {
+    "electron": "^25.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "dependencies": {
+    "axios": "^1.7.9"
+  },
   "build": {
     "appId": "com.example.vtts",
     "productName": "VTTS",

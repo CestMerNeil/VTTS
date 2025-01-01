@@ -22,13 +22,18 @@ jobs:
           node-version: 20
           cache: 'yarn'
 
-      - name: Install Node Dependencies
+      - name: Install Root Dependencies
+        run: yarn install
+
+      - name: Install React Dependencies
         run: |
+          cd nebulaview
           yarn install
-          cd nebulaview && yarn install
 
       - name: Build React App
-        run: yarn build:react
+        run: |
+          cd nebulaview
+          yarn build
 
       - name: Build and Release Electron App
         env:
