@@ -33,14 +33,14 @@
     "publish": {
       "provider": "github",
       "owner": "CestMerNeil",
-      "repo": "VTTS",
-      "releaseType": "release"
+      "repo": "VTTS"
     },
     "mac": {
       "target": [
         "dmg",
         "zip"
-      ]
+      ],
+      "artifactName": "${productName}-${version}-${arch}.${ext}"
     }
   }
 }
