@@ -4,6 +4,9 @@ on:
   push:
     tags:
       - 'v*'
+  release:
+    types: [created, edited]
+  workflow_dispatch:
 
 jobs:
   release:
@@ -40,7 +43,12 @@ jobs:
       - name: Build React App
         run: yarn build:react
 
-      - name: Build and Release Electron App
+      - name: Build Electron App
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: yarn build:electron
+        
+      - name: Release Electron App
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: yarn build:electron -p always
