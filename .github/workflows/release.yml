@@ -10,11 +10,7 @@ on:
 
 jobs:
   release:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
+    runs-on: macos-latest
 
     steps:
       - name: Check out Git repository
@@ -25,16 +21,6 @@ jobs:
         with:
           node-version: 16
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-
-      - name: Install Python Dependencies
-        run: |
-          python -m pip install --upgrade pip
-          if [ -f requirements.dev.txt ]; then pip install -r requirements.dev.txt; fi
-
       - name: Install Node Dependencies
         run: |
           yarn install
@@ -43,12 +29,7 @@ jobs:
       - name: Build React App
         run: yarn build:react
 
-      - name: Build Electron App
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: yarn build:electron
-        
-      - name: Release Electron App
+      - name: Build and Release Electron App
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: yarn build:electron -p always
