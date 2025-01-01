@@ -48,7 +48,7 @@ Desktop.ini
 
 # Package-lock or yarn.lock if using another package manager
 package-lock.json
-yarn.lock
+# yarn.lock
 pnpm-lock.yaml
 
 # Electron-specific files
