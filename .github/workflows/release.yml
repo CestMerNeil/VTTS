@@ -9,9 +9,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  release:
+  # ----------- 1. macOS -----------
+  build-macos:
+    name: Build macOS
     runs-on: macos-latest
-
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v3
@@ -25,7 +26,8 @@ jobs:
           cache: 'yarn'
 
       - name: Install Root Dependencies
-        run: yarn install
+        run: |
+          yarn install
 
       - name: Install React Dependencies
         run: |
@@ -37,8 +39,81 @@ jobs:
           cd nebulaview
           CI=false yarn build
 
-      - name: Build and Release Electron App
+      - name: Build and Release Electron App (mac)
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           yarn electron-builder --mac --publish always
+
+  # ----------- 2. Windows -----------
+  build-windows:
+    name: Build Windows
+    runs-on: windows-latest
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'yarn'
+
+      - name: Install Root Dependencies
+        run: |
+          yarn install
+
+      - name: Install React Dependencies
+        run: |
+          cd nebulaview
+          yarn install
+
+      - name: Build React App
+        run: |
+          cd nebulaview
+          set CI=false
+          yarn build
+
+      - name: Build and Release Electron App (win)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          yarn electron-builder --win --publish always
+
+  # ----------- 3. Linux -----------
+  build-linux:
+    name: Build Linux
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'yarn'
+
+      - name: Install Root Dependencies
+        run: |
+          yarn install
+
+      - name: Install React Dependencies
+        run: |
+          cd nebulaview
+          yarn install
+
+      - name: Build React App
+        run: |
+          cd nebulaview
+          CI=false yarn build
+
+      - name: Build and Release Electron App (linux)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          yarn electron-builder --linux --publish always
